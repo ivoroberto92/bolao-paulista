@@ -1,9 +1,11 @@
 package br.com.bolao.bolaoPaulista.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.com.bolao.bolaoPaulista.dto.JogadorDTO;
 import br.com.bolao.bolaoPaulista.modelo.Jogador;
 
 public interface JogadorService {
@@ -13,5 +15,9 @@ public interface JogadorService {
 	Jogador atribuirTimeAoJogador(String nomeTime, String nomeJogador);
 
 	Optional<Jogador> findById(Long id);
+
+	Jogador alterarJogador(Long id, JogadorDTO jogadorDTO);
+
+	List<Jogador> BuscarTodosJogadores();
 
 }

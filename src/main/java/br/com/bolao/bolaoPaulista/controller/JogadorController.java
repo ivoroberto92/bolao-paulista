@@ -38,8 +38,8 @@ public class JogadorController {
 	private TimeService timeService;
 
 	@GetMapping
-	public List<JogadorDTO> listar() {
-		List<Jogador> jogadores = jogadorRepository.findAll();
+	public List<JogadorDTO> listarJogadores() {
+		List<Jogador> jogadores = jogadorService.BuscarTodosJogadores();
 		return JogadorDTO.converterParaDTO(jogadores);
 	}
 
@@ -61,12 +61,9 @@ public class JogadorController {
 	}
 
 	@PutMapping("/{id}")
-	// @Transactional
+	@Transactional
 	public ResponseEntity<JogadorDTO> alterar(@PathVariable Long id, @RequestBody JogadorDTO jogadorDTO) {
-		Jogador jogador = jogadorService.buscarJogadorPorId(id);
-		Time time = timeService.buscarTimePorId(jogadorDTO.getId());
-		jogador.setTime(time);
-		jogadorRepository.save(jogador);
+		Jogador jogador = jogadorService.alterarJogador(id, jogadorDTO);
 		return ResponseEntity.ok(new JogadorDTO(jogador));
 	}
 

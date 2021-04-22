@@ -1,10 +1,12 @@
 package br.com.bolao.bolaoPaulista.serviceImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.bolao.bolaoPaulista.dto.JogadorDTO;
 import br.com.bolao.bolaoPaulista.modelo.Jogador;
 import br.com.bolao.bolaoPaulista.modelo.Time;
 import br.com.bolao.bolaoPaulista.repository.JogadorRepository;
@@ -38,6 +40,23 @@ public class JogadorServiceImpl implements JogadorService {
 	@Override
 	public Optional<Jogador> findById(Long id) {
 		return jogadorRepository.findById(id);
+	}
+
+	@Override
+	public Jogador alterarJogador(Long id, JogadorDTO jogadorDTO) {
+		Jogador jogador = buscarJogadorPorId(id);
+		Time time = timeRepository.getOne(jogadorDTO.getId());
+		if(time != null) {
+			jogador.setTime(time);
+			jogadorRepository.save(jogador);
+		}
+		return jogador;
+	}
+
+	@Override
+	public List<Jogador> BuscarTodosJogadores() {
+		List<Jogador> jogadores = jogadorRepository.findAll();
+		return jogadores;
 	}
 
 }
