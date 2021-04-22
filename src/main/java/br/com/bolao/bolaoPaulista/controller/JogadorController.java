@@ -2,7 +2,6 @@ package br.com.bolao.bolaoPaulista.controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -20,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.JogadorDTO;
 import br.com.bolao.bolaoPaulista.modelo.Jogador;
-import br.com.bolao.bolaoPaulista.modelo.Time;
 import br.com.bolao.bolaoPaulista.repository.JogadorRepository;
 import br.com.bolao.bolaoPaulista.service.JogadorService;
 import br.com.bolao.bolaoPaulista.service.TimeService;
@@ -70,9 +68,8 @@ public class JogadorController {
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> remover(@PathVariable Long id) {
-		Optional<Jogador> optionalJogador = jogadorRepository.findById(id);
-		if (optionalJogador.isPresent()) {
-			jogadorRepository.deleteById(id);
+		boolean deletou = jogadorService.deletarJogadorPorId(id);
+		if (deletou) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
