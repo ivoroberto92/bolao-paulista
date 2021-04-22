@@ -44,10 +44,10 @@ public class JogadorController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<JogadorDTO> detalhar(@PathVariable Long id) {
-		Optional<Jogador> optionalJogador = jogadorRepository.findById(id);
-		if (optionalJogador.isPresent()) {
-			return ResponseEntity.ok(new JogadorDTO(optionalJogador.get()));
+	public ResponseEntity<JogadorDTO> detalharPorJogador(@PathVariable Long id) {
+		Jogador jogador = jogadorService.buscarJogadorPorId(id);
+		if (jogador != null) {
+			return ResponseEntity.ok(new JogadorDTO(jogador));
 		}
 		return ResponseEntity.notFound().build();
 	}

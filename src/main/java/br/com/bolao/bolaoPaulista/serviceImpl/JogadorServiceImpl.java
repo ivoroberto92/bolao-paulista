@@ -12,6 +12,8 @@ import br.com.bolao.bolaoPaulista.repository.TimeRepository;
 import br.com.bolao.bolaoPaulista.service.JogadorService;
 @Service
 public class JogadorServiceImpl implements JogadorService {
+
+	
 	@Autowired
 	private JogadorRepository jogadorRepository;
 	@Autowired
@@ -31,6 +33,11 @@ public class JogadorServiceImpl implements JogadorService {
 	public Jogador atribuirTimeAoJogador(String nomeTime, String nomeJogador) {
 		Time time = timeRepository.findByNome(nomeTime);
 		return new Jogador(nomeJogador, time);
+	}
+
+	@Override
+	public Optional<Jogador> findById(Long id) {
+		return jogadorRepository.findById(id);
 	}
 
 }
