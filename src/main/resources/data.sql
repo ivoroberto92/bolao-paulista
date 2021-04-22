@@ -23,6 +23,6 @@ INSERT INTO Jogador(nome, time_id, pontos) VALUES('Lucas', 2, 0);
 INSERT INTO Jogador(nome, time_id, pontos) VALUES('Kenny', 2, 0);
 INSERT INTO Jogador(nome, time_id, pontos) VALUES('Geyvson', 3, 0);
 
-
+INSERT INTO Partida(time_visitante_id, time_casa_id, gols_casa, gols_visitante) VALUES(1, 2, 2, 1)
 
 
