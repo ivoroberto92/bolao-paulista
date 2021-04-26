@@ -9,13 +9,11 @@ public interface PartidaService {
 
 	List<Partida> buscarTodasPartidas();
 
-	Partida busparPartidaPorId(Long id);
+	Partida buscarPartidaPorId(Long id);
 
 	Partida atribuirTimeNaPartida(PartidaDTO partidaDTO, String timeCasa, String timeVisitante);
 
 	Partida alterarPartida(Long id, PartidaDTO partidaDTO);
-
-	Partida buscarPartidaPorId(Long id);
 
 	boolean deletarPartida(Long id);
 }

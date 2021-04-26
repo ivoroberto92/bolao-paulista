@@ -28,7 +28,7 @@ public class PartidaServiceImpl implements PartidaService {
 	}
 
 	@Override
-	public Partida busparPartidaPorId(Long id) {
+	public Partida buscarPartidaPorId(Long id) {
 		Optional<Partida> partida = partidaRepository.findById(id);
 		if (partida.isPresent()) {
 			return partida.get();
@@ -66,11 +66,6 @@ public class PartidaServiceImpl implements PartidaService {
 			return partida;
 		}
 		return null;
-	}
-
-	@Override
-	public Partida buscarPartidaPorId(Long id) {
-		return partidaRepository.getOne(id);
 	}
 
 	@Override

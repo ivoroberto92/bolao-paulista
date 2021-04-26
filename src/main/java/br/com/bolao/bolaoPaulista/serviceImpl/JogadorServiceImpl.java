@@ -57,7 +57,6 @@ public class JogadorServiceImpl implements JogadorService {
 			return jogador;
 		}
 		return null;
-		
 	}
 
 	@Override

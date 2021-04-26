@@ -37,7 +37,7 @@ public class PartidaController {
 
 	@GetMapping("/{id}")
 	private ResponseEntity<PartidaDTO> detalhar(@PathVariable Long id, PartidaDTO partidaDTO) {
-		Partida partida = partidaService.busparPartidaPorId(id);
+		Partida partida = partidaService.buscarPartidaPorId(id);
 		if (partida != null) {
 			return ResponseEntity.ok(new PartidaDTO(partida));
 		}
