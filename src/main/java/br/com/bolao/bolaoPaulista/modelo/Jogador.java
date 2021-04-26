@@ -21,6 +21,7 @@ public class Jogador {
 	private Time time;
 
 	private int pontos;
+	
 	public Jogador() {
 	}
 

@@ -37,7 +37,7 @@ public class JogadorController {
 
 	@GetMapping
 	public List<JogadorDTO> listarJogadores() {
-		List<Jogador> jogadores = jogadorService.BuscarTodosJogadores();
+		List<Jogador> jogadores = jogadorService.buscarTodosJogadores();
 		return JogadorDTO.converterParaDTO(jogadores);
 	}
 
@@ -55,6 +55,7 @@ public class JogadorController {
 		Jogador jogador = jogadorService.atribuirTimeAoJogador(jogadorDTO.getNomeTime(), jogadorDTO.getNome());
 		jogadorRepository.save(jogador);
 		URI uri = uriBuilder.path("/jogador/{id}").buildAndExpand(jogador.getId()).toUri();
+		System.out.println(uri);
 		return ResponseEntity.created(uri).body(new JogadorDTO(jogador));
 	}
 

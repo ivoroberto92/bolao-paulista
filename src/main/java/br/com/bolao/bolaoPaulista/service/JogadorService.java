@@ -16,7 +16,7 @@ public interface JogadorService {
 
 	Jogador alterarJogador(Long id, JogadorDTO jogadorDTO);
 
-	List<Jogador> BuscarTodosJogadores();
+	List<Jogador> buscarTodosJogadores();
 
 	boolean deletarJogadorPorId(Long id);
 

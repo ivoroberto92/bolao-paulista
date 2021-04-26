@@ -1,0 +1,54 @@
+[33mcommit 70464100879222e76618e9dcb2e6554f63e9ccf7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: c8054a2 9eefd8c
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 18:44:07 2021 -0300
+
+    Merge branch 'master' of https://github.com/ivoroberto92/bolao-paulista
+
+[33mcommit c8054a258b51587be459c34c847a590b16f91ecb[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 18:32:21 2021 -0300
+
+    Adicionando partida ao projeto
+
+[33mcommit d78d305ab0f61d469ebe22c7b3132c25dfb3b33f[m[33m ([m[1;31morigin/feature/partida[m[33m, [m[1;32mfeature/partida[m[33m)[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 18:31:27 2021 -0300
+
+    Adicionando uma partida no arquivo ddl para teste
+
+[33mcommit 9eefd8c515ffbfec2d224fa6f4a0f232e586e959[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 18:32:21 2021 -0300
+
+    Adicionando partida ao projeto
+
+[33mcommit a5178990104533e9b461f4b148bc28c6c4ef800d[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 18:31:27 2021 -0300
+
+    Adicionando partida no projeto
+
+[33mcommit 9fbe29cc3472e62ee4f13a2b8a3b49416fe85435[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 14:06:36 2021 -0300
+
+    Refatoração de código no método que deleta um jogador
+
+[33mcommit 0975c3f8cab30d33c87dcb46b0af09af3eb6b982[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 13:54:24 2021 -0300
+
+    Refatoração de código no método que lista todos os jogadores
+
+[33mcommit c5cbc3eb488c77cb98d32777fd5308936da8581d[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Thu Apr 22 13:19:30 2021 -0300
+
+    Refatoração de código no método que detalha o jogador por id
+
+[33mcommit 6166288a483f8838672b71673318e582b07e08e3[m
+Author: Ivo Roberto <ivoroberto92@gmail.com>
+Date:   Wed Apr 14 13:27:23 2021 -0300
+
+    Criando projeto Bolão Paulista

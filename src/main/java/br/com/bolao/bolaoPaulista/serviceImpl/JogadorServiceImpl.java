@@ -54,7 +54,7 @@ public class JogadorServiceImpl implements JogadorService {
 	}
 
 	@Override
-	public List<Jogador> BuscarTodosJogadores() {
+	public List<Jogador> buscarTodosJogadores() {
 		List<Jogador> jogadores = jogadorRepository.findAll();
 		return jogadores;
 	}
