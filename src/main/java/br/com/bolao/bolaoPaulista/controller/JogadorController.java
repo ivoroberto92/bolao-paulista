@@ -28,9 +28,6 @@ import br.com.bolao.bolaoPaulista.service.TimeService;
 public class JogadorController {
 
 	@Autowired
-	private JogadorRepository jogadorRepository;
-
-	@Autowired
 	private JogadorService jogadorService;
 
 	private TimeService timeService;
@@ -52,8 +49,7 @@ public class JogadorController {
 
 	@PostMapping
 	public ResponseEntity<JogadorDTO> cadastrar(@RequestBody JogadorDTO jogadorDTO, UriComponentsBuilder uriBuilder) {
-		Jogador jogador = jogadorService.atribuirTimeAoJogador(jogadorDTO.getNomeTime(), jogadorDTO.getNome());
-		jogadorRepository.save(jogador);
+		Jogador jogador = jogadorService.cadastrarJogador(jogadorDTO.getNomeTime(), jogadorDTO.getNome());
 		URI uri = uriBuilder.path("/jogador/{id}").buildAndExpand(jogador.getId()).toUri();
 		System.out.println(uri);
 		return ResponseEntity.created(uri).body(new JogadorDTO(jogador));

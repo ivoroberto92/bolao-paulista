@@ -12,10 +12,10 @@ import br.com.bolao.bolaoPaulista.modelo.Time;
 import br.com.bolao.bolaoPaulista.repository.JogadorRepository;
 import br.com.bolao.bolaoPaulista.repository.TimeRepository;
 import br.com.bolao.bolaoPaulista.service.JogadorService;
+
 @Service
 public class JogadorServiceImpl implements JogadorService {
 
-	
 	@Autowired
 	private JogadorRepository jogadorRepository;
 	@Autowired
@@ -32,9 +32,14 @@ public class JogadorServiceImpl implements JogadorService {
 	}
 
 	@Override
-	public Jogador atribuirTimeAoJogador(String nomeTime, String nomeJogador) {
+	public Jogador cadastrarJogador(String nomeTime, String nomeJogador) {
 		Time time = timeRepository.findByNome(nomeTime);
-		return new Jogador(nomeJogador, time);
+		if (time != null) {
+			Jogador jogador = new Jogador(nomeJogador, time);
+			jogadorRepository.save(jogador);
+			return jogador;
+		}
+		return null;
 	}
 
 	@Override
@@ -46,11 +51,13 @@ public class JogadorServiceImpl implements JogadorService {
 	public Jogador alterarJogador(Long id, JogadorDTO jogadorDTO) {
 		Jogador jogador = buscarJogadorPorId(id);
 		Time time = timeRepository.getOne(jogadorDTO.getId());
-		if(time != null) {
+		if (jogador != null && time != null) {
 			jogador.setTime(time);
 			jogadorRepository.save(jogador);
+			return jogador;
 		}
-		return jogador;
+		return null;
+		
 	}
 
 	@Override

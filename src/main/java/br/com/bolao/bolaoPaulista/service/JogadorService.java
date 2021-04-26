@@ -10,7 +10,7 @@ public interface JogadorService {
 
 	Jogador buscarJogadorPorId(Long id);
 
-	Jogador atribuirTimeAoJogador(String nomeTime, String nomeJogador);
+	Jogador cadastrarJogador(String nomeTime, String nomeJogador);
 
 	Optional<Jogador> findById(Long id);
 
