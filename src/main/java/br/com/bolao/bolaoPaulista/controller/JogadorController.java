@@ -19,9 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.JogadorDTO;
 import br.com.bolao.bolaoPaulista.modelo.Jogador;
-import br.com.bolao.bolaoPaulista.repository.JogadorRepository;
 import br.com.bolao.bolaoPaulista.service.JogadorService;
-import br.com.bolao.bolaoPaulista.service.TimeService;
 
 @RestController
 @RequestMapping("/jogador")
@@ -29,9 +27,7 @@ public class JogadorController {
 
 	@Autowired
 	private JogadorService jogadorService;
-
-	private TimeService timeService;
-
+	
 	@GetMapping
 	public List<JogadorDTO> listarJogadores() {
 		List<Jogador> jogadores = jogadorService.buscarTodosJogadores();

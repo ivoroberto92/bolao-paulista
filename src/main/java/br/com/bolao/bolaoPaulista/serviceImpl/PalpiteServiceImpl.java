@@ -14,56 +14,57 @@ import br.com.bolao.bolaoPaulista.repository.JogadorRepository;
 import br.com.bolao.bolaoPaulista.repository.PalpiteRepository;
 import br.com.bolao.bolaoPaulista.repository.TimeRepository;
 import br.com.bolao.bolaoPaulista.service.PalpiteService;
+
 @Service
 public class PalpiteServiceImpl implements PalpiteService {
-	
+
 	@Autowired
 	private PalpiteRepository palpiteRepository;
-	
 	@Autowired
 	private JogadorRepository jogadorRepository;
 	@Autowired
 	private TimeRepository timeRepository;
-	
+
 	@Override
 	public List<Palpite> buscarTodosPalpites() {
-		List<Palpite> palpites = palpiteRepository.findAll();
-		return palpites;
+		return palpiteRepository.findAll();
 	}
 
 	@Override
 	public Palpite buscarPorId(Long id) {
-		Optional<Palpite> palpiteOptional = palpiteRepository.findById(id);
-		if(palpiteOptional.isPresent()) {
-			Palpite palpite = palpiteOptional.get();
-			return palpite;
+		Palpite retornoPalpite = null;
+		Optional<Palpite> palpite = palpiteRepository.findById(id);
+		if (palpite.isPresent()) {
+			retornoPalpite = palpite.get();
+			return retornoPalpite;
 		}
-		return null;
+		return retornoPalpite;
 	}
 
 	@Override
 	public Palpite cadastrar(PalpiteDTO palpiteDTO) {
+		Palpite palpite = null;
 		Jogador jogador = jogadorRepository.findByNome(palpiteDTO.getNomeJogador());
 		Time timeCasa = timeRepository.findByNome(palpiteDTO.getTimeCasa());
 		Time timeVisitante = timeRepository.findByNome(palpiteDTO.getTimeVisitante());
-		if(jogador != null && timeCasa != null && timeVisitante != null) {
-		Palpite	palpite = new Palpite(palpiteDTO.getId(), jogador, timeCasa, 
-							   timeVisitante, palpiteDTO.getGolsCasa(), 
-							   palpiteDTO.getGolsVisitante());
-			palpiteRepository.save(palpite); 
+		if (jogador != null && timeCasa != null && timeVisitante != null) {
+			palpite = new Palpite(palpiteDTO.getId(), jogador, timeCasa, timeVisitante, palpiteDTO.getGolsCasa(),
+					palpiteDTO.getGolsVisitante());
+			palpiteRepository.save(palpite);
 			return palpite;
 		}
-		return null;
+		return palpite;
 	}
 
 	@Override
 	public Palpite alterar(PalpiteDTO palpiteDTO, Long id) {
-		//analisar como buscar jogador pelo id
+		Palpite palpite = null;
+		// analisar como buscar jogador pelo id
 		Jogador jogador = jogadorRepository.findByNome(palpiteDTO.getNomeJogador());
 		Time timeCasa = timeRepository.findByNome(palpiteDTO.getTimeCasa());
 		Time timeVisitante = timeRepository.findByNome(palpiteDTO.getTimeVisitante());
-		if(jogador != null && timeCasa != null && timeVisitante != null) {
-			Palpite palpite = palpiteRepository.getOne(id);
+		if (jogador != null && timeCasa != null && timeVisitante != null) {
+			palpite = palpiteRepository.getOne(id);
 			palpite.setJogador(jogador);
 			palpite.setTimeCasa(timeCasa);
 			palpite.setTimeVisitante(timeVisitante);
@@ -72,14 +73,14 @@ public class PalpiteServiceImpl implements PalpiteService {
 			palpiteRepository.save(palpite);
 			return palpite;
 		}
-		
-		return null;
+
+		return palpite;
 	}
 
 	@Override
 	public boolean deletar(Long id) {
 		Optional<Palpite> palpite = palpiteRepository.findById(id);
-		if(palpite.isPresent()) {
+		if (palpite.isPresent()) {
 			palpiteRepository.deleteById(id);
 			return true;
 		}

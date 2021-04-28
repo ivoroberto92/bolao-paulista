@@ -12,12 +12,12 @@ public interface JogadorService {
 
 	Jogador cadastrarJogador(String nomeTime, String nomeJogador);
 
-	Optional<Jogador> findById(Long id);
-
 	Jogador alterarJogador(Long id, JogadorDTO jogadorDTO);
 
 	List<Jogador> buscarTodosJogadores();
 
 	boolean deletarJogadorPorId(Long id);
+
+	Jogador findById(Long id);
 
 }

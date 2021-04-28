@@ -23,28 +23,36 @@ public class JogadorServiceImpl implements JogadorService {
 
 	@Override
 	public Jogador buscarJogadorPorId(Long id) {
-		Optional<Jogador> optionalJogador = jogadorRepository.findById(id);
-		if (optionalJogador.isPresent()) {
-			Jogador jogador = optionalJogador.get();
-			return jogador;
+		Jogador retornoJogador = null;
+		Optional<Jogador> jogador = jogadorRepository.findById(id);
+		if (jogador.isPresent()) {
+			retornoJogador = jogador.get();
+			return retornoJogador;
 		}
-		return null;
+		return retornoJogador;
 	}
 
 	@Override
 	public Jogador cadastrarJogador(String nomeTime, String nomeJogador) {
+		Jogador jogador = null;
 		Time time = timeRepository.findByNome(nomeTime);
 		if (time != null) {
-			Jogador jogador = new Jogador(nomeJogador, time);
+			jogador = new Jogador(nomeJogador, time);
 			jogadorRepository.save(jogador);
 			return jogador;
 		}
-		return null;
+		return jogador;
 	}
 
 	@Override
-	public Optional<Jogador> findById(Long id) {
-		return jogadorRepository.findById(id);
+	public Jogador findById(Long id) {
+		Jogador retornoJogador = null;
+		Optional<Jogador> jogador = jogadorRepository.findById(id);
+		if (jogador.isPresent()) {
+			retornoJogador = jogador.get();
+			return retornoJogador;
+		}
+		return retornoJogador;
 	}
 
 	@Override
@@ -56,19 +64,18 @@ public class JogadorServiceImpl implements JogadorService {
 			jogadorRepository.save(jogador);
 			return jogador;
 		}
-		return null;
+		return jogador;
 	}
 
 	@Override
 	public List<Jogador> buscarTodosJogadores() {
-		List<Jogador> jogadores = jogadorRepository.findAll();
-		return jogadores;
+		return jogadorRepository.findAll();
 	}
 
 	@Override
 	public boolean deletarJogadorPorId(Long id) {
-		Optional<Jogador> optionalJogador = jogadorRepository.findById(id);
-		if (optionalJogador.isPresent()) {
+		Optional<Jogador> jogador = jogadorRepository.findById(id);
+		if (jogador.isPresent()) {
 			jogadorRepository.deleteById(id);
 			return true;
 		}

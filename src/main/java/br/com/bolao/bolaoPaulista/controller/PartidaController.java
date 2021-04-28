@@ -46,7 +46,8 @@ public class PartidaController {
 
 	@PostMapping()
 	private ResponseEntity<PartidaDTO> cadastrar(@RequestBody PartidaDTO partidaDTO, UriComponentsBuilder uriBuilder) {
-		Partida partida = partidaService.atribuirTimeNaPartida(partidaDTO, partidaDTO.getTimeCasa(),
+		Partida partida = partidaService.atribuirTimeNaPartida(partidaDTO, 
+															   partidaDTO.getTimeCasa(),
 															   partidaDTO.getTimeVisitante());
 		if (partida != null) {
 			URI uri = uriBuilder.path("/partida/{id}").buildAndExpand(partida.getId()).toUri();

@@ -23,33 +23,37 @@ public class PartidaServiceImpl implements PartidaService {
 
 	@Override
 	public List<Partida> buscarTodasPartidas() {
-		List<Partida> partidas = partidaRepository.findAll();
-		return partidas;
+		return partidaRepository.findAll();
+		
 	}
 
 	@Override
 	public Partida buscarPartidaPorId(Long id) {
+		Partida retornoPartida = null;
 		Optional<Partida> partida = partidaRepository.findById(id);
 		if (partida.isPresent()) {
-			return partida.get();
+			retornoPartida = partida.get();
+			return retornoPartida;
 		}
-		return null;
+		return retornoPartida;
 	}
 
 	@Override
 	public Partida atribuirTimeNaPartida(PartidaDTO partidaDTO, String nomeTimeCasa, String nomeTimeVisitante) {
+		Partida partida = null;
 		if (!nomeTimeCasa.equals(nomeTimeVisitante)) {
 			Time timeCasa = timeRepository.findByNome(nomeTimeCasa);
 			Time timeVisitante = timeRepository.findByNome(nomeTimeVisitante);
 			if (timeCasa != null && timeVisitante != null) {
-				Partida partida = new Partida(partidaDTO.getId(), timeCasa, timeVisitante, 
-											  partidaDTO.getGolsCasa(), partidaDTO.getGolsVisitante());
+				partida = new Partida(partidaDTO.getId(), timeCasa, timeVisitante, 
+									  partidaDTO.getGolsCasa(),
+									  partidaDTO.getGolsVisitante());
 				partidaRepository.save(partida);
 				return partida;
 			}
 		}
 
-		return null;
+		return partida;
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class PartidaServiceImpl implements PartidaService {
 		Partida partida = buscarPartidaPorId(id);
 		Time timeCasa = timeRepository.findByNome(partidaDTO.getTimeCasa());
 		Time timeVisitante = timeRepository.findByNome(partidaDTO.getTimeVisitante());
-		if(partida != null) {
+		if (partida != null) {
 			partida.setTimeCasa(timeCasa);
 			partida.setTimeVistitante(timeVisitante);
 			partida.setGolsCasa(partidaDTO.getGolsCasa());
@@ -65,13 +69,13 @@ public class PartidaServiceImpl implements PartidaService {
 			partidaRepository.save(partida);
 			return partida;
 		}
-		return null;
+		return partida;
 	}
 
 	@Override
 	public boolean deletarPartida(Long id) {
 		Optional<Partida> partida = partidaRepository.findById(id);
-		if(partida.isPresent()) {
+		if (partida.isPresent()) {
 			partidaRepository.deleteById(id);
 			return true;
 		}
