@@ -61,8 +61,8 @@ public class PlayerController {
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> deleteById(@PathVariable Long id) {
-		boolean deletou = playerService.removePlayerById(id);
-		if (deletou) {
+		boolean excluded = playerService.removePlayerById(id);
+		if (excluded) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();

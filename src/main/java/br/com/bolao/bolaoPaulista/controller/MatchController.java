@@ -67,8 +67,8 @@ public class MatchController {
 	@DeleteMapping("/{id}")
 	@Transactional
 	private ResponseEntity<MatchDTO> deleteById(@PathVariable Long id) {
-		boolean match = matchService.removeMatchById(id);
-		if (match) {
+		boolean excluded = matchService.removeMatchById(id);
+		if (excluded) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
