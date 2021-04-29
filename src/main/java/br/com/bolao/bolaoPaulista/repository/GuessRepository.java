@@ -3,8 +3,8 @@ package br.com.bolao.bolaoPaulista.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.bolao.bolaoPaulista.modelo.Time;
+import br.com.bolao.bolaoPaulista.modelo.Guess;
 @Repository
-public interface TimeRepository extends JpaRepository<Time, Long>{
-	Time findByNome(String nomeTime);
+public interface GuessRepository extends JpaRepository<Guess, Long>{
+
 }

@@ -1,28 +1,28 @@
-INSERT INTO Time(nome) VALUES('Corinthians');
-INSERT INTO Time(nome) VALUES('Palmeiras');
-INSERT INTO Time(nome) VALUES('São Paulo');
-INSERT INTO Time(nome) VALUES('Santos');
-INSERT INTO Time(nome) VALUES('Santo André');
-INSERT INTO Time(nome) VALUES('Inter de Limeira');
-INSERT INTO Time(nome) VALUES('Botafogo SP');
-INSERT INTO Time(nome) VALUES('Ferroviária');
-INSERT INTO Time(nome) VALUES('São Bento');
-INSERT INTO Time(nome) VALUES('Ponte Preta');
-INSERT INTO Time(nome) VALUES('Bragantino');
-INSERT INTO Time(nome) VALUES('Ituano');
-INSERT INTO Time(nome) VALUES('Novorizontino');
-INSERT INTO Time(nome) VALUES('Mirassol');
-INSERT INTO Time(nome) VALUES('Guarani');
-INSERT INTO Time(nome) VALUES('São Caetano');
+INSERT INTO Team(name) VALUES('Corinthians');
+INSERT INTO Team(name) VALUES('Palmeiras');
+INSERT INTO Team(name) VALUES('São Paulo');
+INSERT INTO Team(name) VALUES('Santos');
+INSERT INTO Team(name) VALUES('Santo André');
+INSERT INTO Team(name) VALUES('Inter de Limeira');
+INSERT INTO Team(name) VALUES('Botafogo SP');
+INSERT INTO Team(name) VALUES('Ferroviária');
+INSERT INTO Team(name) VALUES('São Bento');
+INSERT INTO Team(name) VALUES('Ponte Preta');
+INSERT INTO Team(name) VALUES('Bragantino');
+INSERT INTO Team(name) VALUES('Ituano');
+INSERT INTO Team(name) VALUES('Novorizontino');
+INSERT INTO Team(name) VALUES('Mirassol');
+INSERT INTO Team(name) VALUES('Guarani');
+INSERT INTO Team(name) VALUES('São Caetano');
 
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Ivo', 1, 0);
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Renato', 1, 0);
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Nathan', 1, 0);
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Lukinhas', 1, 0);
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Lucas', 2, 0);
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Kenny', 2, 0);
-INSERT INTO Jogador(nome, time_id, pontos) VALUES('Geyvson', 3, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Ivo', 1, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Renato', 1, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Nathan', 1, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Lukinhas', 1, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Lucas', 2, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Kenny', 2, 0);
+INSERT INTO Player(name, Team_id, score) VALUES('Geyvson', 3, 0);
 
-INSERT INTO Partida(time_visitante_id, time_casa_id, gols_casa, gols_visitante) VALUES(1, 2, 2, 1)
+INSERT INTO Match(away_team_id, home_team_id, goals_home_team, goals_away_team) VALUES(1, 2, 2, 1)
 
 

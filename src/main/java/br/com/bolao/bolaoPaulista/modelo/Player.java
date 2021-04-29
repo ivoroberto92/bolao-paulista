@@ -8,26 +8,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Jogador {
+public class Player {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nome;
+	private String name;
 
 	@ManyToOne
-	@JoinColumn(name = "time_id")
-	private Time time;
+	@JoinColumn(name = "team_id")
+	private Team team;
 
-	private int pontos;
+	private int score;
 	
-	public Jogador() {
+	public Player() {
 	}
 
-	public Jogador(String nome, Time time) {
-		this.nome = nome;
-		this.time = time;
+	public Player(String name, Team team, int score) {
+		this.name = name;
+		this.team = team;
 	}
 
 	public Long getId() {
@@ -38,19 +38,19 @@ public class Jogador {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Time getTime() {
-		return time;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setTime(Time time) {
-		this.time = time;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 }

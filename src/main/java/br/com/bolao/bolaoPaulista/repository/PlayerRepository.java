@@ -3,10 +3,10 @@ package br.com.bolao.bolaoPaulista.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.bolao.bolaoPaulista.modelo.Jogador;
+import br.com.bolao.bolaoPaulista.modelo.Player;
 @Repository
-public interface JogadorRepository extends JpaRepository<Jogador, Long> {
+public interface PlayerRepository extends JpaRepository<Player, Long> {
 
-	Jogador findByNome(String nomeJogador);
+	Player findByName(String playerName);
 
 }
