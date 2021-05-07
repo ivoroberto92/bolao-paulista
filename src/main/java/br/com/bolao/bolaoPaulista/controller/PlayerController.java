@@ -27,7 +27,7 @@ public class PlayerController {
 
 	@Autowired
 	private PlayerService playerService;
-	
+
 	@GetMapping
 	public List<PlayerDTO> listAll() {
 		List<Player> playeres = playerService.findAllPlayers();

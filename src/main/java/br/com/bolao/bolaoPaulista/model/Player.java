@@ -28,6 +28,7 @@ public class Player {
 	public Player(String name, Team team, int score) {
 		this.name = name;
 		this.team = team;
+		this.score = score;
 	}
 
 	public Long getId() {
@@ -52,5 +53,13 @@ public class Player {
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 }

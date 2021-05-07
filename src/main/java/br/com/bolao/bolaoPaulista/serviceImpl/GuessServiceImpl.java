@@ -42,7 +42,7 @@ public class GuessServiceImpl implements GuessService {
 	}
 
 	@Override
-	public Guess createGuess(GuessDTO guessDTO) throws Exception {
+	public Guess createGuess(GuessDTO guessDTO) {
 		Guess guess = validGuessDTO(guessDTO);
 			if (guess != null) {
 				guessRepository.save(guess);
