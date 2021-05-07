@@ -3,7 +3,7 @@ package br.com.bolao.bolaoPaulista.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.bolao.bolaoPaulista.modelo.Player;
+import br.com.bolao.bolaoPaulista.model.Player;
 
 public class PlayerDTO {
 	
@@ -50,7 +50,6 @@ public class PlayerDTO {
 		this.teamId = teamId;
 	}
 
-	
 	public static List<PlayerDTO> converterParaDTO(List<Player> players) {
 		return players.stream().map(PlayerDTO::new).collect(Collectors.toList());
 	}

@@ -3,7 +3,7 @@ package br.com.bolao.bolaoPaulista.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.bolao.bolaoPaulista.modelo.Guess;
+import br.com.bolao.bolaoPaulista.model.Guess;
 
 public class GuessDTO {
 

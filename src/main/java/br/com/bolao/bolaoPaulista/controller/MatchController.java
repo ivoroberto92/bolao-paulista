@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.MatchDTO;
-import br.com.bolao.bolaoPaulista.modelo.Match;
+import br.com.bolao.bolaoPaulista.model.Match;
 import br.com.bolao.bolaoPaulista.service.MatchService;
 
 @RestController

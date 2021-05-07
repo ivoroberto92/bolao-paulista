@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.bolao.bolaoPaulista.dto.GuessDTO;
-import br.com.bolao.bolaoPaulista.modelo.Player;
-import br.com.bolao.bolaoPaulista.modelo.Guess;
-import br.com.bolao.bolaoPaulista.modelo.Team;
-import br.com.bolao.bolaoPaulista.repository.PlayerRepository;
+import br.com.bolao.bolaoPaulista.model.Guess;
+import br.com.bolao.bolaoPaulista.model.Player;
+import br.com.bolao.bolaoPaulista.model.Team;
 import br.com.bolao.bolaoPaulista.repository.GuessRepository;
+import br.com.bolao.bolaoPaulista.repository.PlayerRepository;
 import br.com.bolao.bolaoPaulista.repository.TeamRepository;
 import br.com.bolao.bolaoPaulista.service.GuessService;
 
@@ -42,7 +42,15 @@ public class GuessServiceImpl implements GuessService {
 	}
 
 	@Override
-	public Guess createGuess(GuessDTO guessDTO) {
+	public Guess createGuess(GuessDTO guessDTO) throws Exception {
+		Guess guess = validGuessDTO(guessDTO);
+			if (guess != null) {
+				guessRepository.save(guess);
+			}
+		return guess;
+	}
+	
+	private Guess validGuessDTO(GuessDTO guessDTO) {
 		Guess guess = null;
 		Player player = playerRepository.findByName(guessDTO.getPlayerName());
 		Team homeTeam = teamRepository.findByName(guessDTO.getHomeTeam());
@@ -50,7 +58,6 @@ public class GuessServiceImpl implements GuessService {
 		if (player != null && homeTeam != null && awayTeam != null) {
 			guess = new Guess(guessDTO.getId(), player, homeTeam, awayTeam, guessDTO.getGoalsHomeTeam(),
 					guessDTO.getGoalsAwayTeam());
-			guessRepository.save(guess);
 			return guess;
 		}
 		return guess;

@@ -3,7 +3,7 @@ package br.com.bolao.bolaoPaulista.service;
 import java.util.List;
 
 import br.com.bolao.bolaoPaulista.dto.GuessDTO;
-import br.com.bolao.bolaoPaulista.modelo.Guess;
+import br.com.bolao.bolaoPaulista.model.Guess;
 
 public interface GuessService{
 

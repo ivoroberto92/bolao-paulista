@@ -3,7 +3,7 @@ package br.com.bolao.bolaoPaulista.service;
 import java.util.List;
 
 import br.com.bolao.bolaoPaulista.dto.MatchDTO;
-import br.com.bolao.bolaoPaulista.modelo.Match;
+import br.com.bolao.bolaoPaulista.model.Match;
 
 public interface MatchService {
 

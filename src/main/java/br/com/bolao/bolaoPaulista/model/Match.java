@@ -1,4 +1,4 @@
-package br.com.bolao.bolaoPaulista.modelo;
+package br.com.bolao.bolaoPaulista.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

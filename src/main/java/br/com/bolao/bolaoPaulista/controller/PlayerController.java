@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.PlayerDTO;
-import br.com.bolao.bolaoPaulista.modelo.Player;
+import br.com.bolao.bolaoPaulista.model.Player;
 import br.com.bolao.bolaoPaulista.service.PlayerService;
 
 @RestController

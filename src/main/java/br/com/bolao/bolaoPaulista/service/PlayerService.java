@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.bolao.bolaoPaulista.dto.PlayerDTO;
-import br.com.bolao.bolaoPaulista.modelo.Player;
+import br.com.bolao.bolaoPaulista.model.Player;
 
 public interface PlayerService {
 

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.bolao.bolaoPaulista.dto.PlayerDTO;
-import br.com.bolao.bolaoPaulista.modelo.Player;
-import br.com.bolao.bolaoPaulista.modelo.Team;
+import br.com.bolao.bolaoPaulista.model.Player;
+import br.com.bolao.bolaoPaulista.model.Team;
 import br.com.bolao.bolaoPaulista.repository.PlayerRepository;
 import br.com.bolao.bolaoPaulista.repository.TeamRepository;
 import br.com.bolao.bolaoPaulista.service.PlayerService;

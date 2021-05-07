@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.GuessDTO;
-import br.com.bolao.bolaoPaulista.modelo.Guess;
+import br.com.bolao.bolaoPaulista.model.Guess;
 import br.com.bolao.bolaoPaulista.service.GuessService;
 
 @RestController
@@ -42,13 +42,14 @@ public class GuessController {
 	}
 
 	@PostMapping
-	private ResponseEntity<GuessDTO> create(@RequestBody GuessDTO guessDTO, UriComponentsBuilder uriBuilder) {
-		Guess guess = guessService.createGuess(guessDTO);
+	private ResponseEntity<?> create(@RequestBody GuessDTO guessDTO, UriComponentsBuilder uriBuilder) {
+		Guess guess = guessService.createGuess(guessDTO);		
 		if (guess != null) {
 			URI uri = uriBuilder.path("/guess/{id}").buildAndExpand(guess.getId()).toUri();
 			return ResponseEntity.created(uri).body(new GuessDTO(guess));
 		}
-		return ResponseEntity.notFound().build();
+		ErrorSintaxe error = new ErrorSintaxe("Não foi possível realizar o cadastro devido erro nas informações");
+		return ResponseEntity.badRequest().body(error.getMessage());
 	}
 
 	@PutMapping("/{id}")
