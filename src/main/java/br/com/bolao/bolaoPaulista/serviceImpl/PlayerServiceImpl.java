@@ -22,11 +22,11 @@ public class PlayerServiceImpl implements PlayerService {
 	private TeamRepository teamRepository;
 
 	@Override
-	public Player createPlayer(String nomeTeam, String playerName) {
+	public Player createPlayer(String nomeTeam, String playerName, int score) {
 		Player player = null;
 		Team team = teamRepository.findByName(nomeTeam);
 		if (team != null) {
-			player = new Player(playerName, team, 0);
+			player = new Player(playerName, team, score);
 			playerRepository.save(player);
 			return player;
 		}

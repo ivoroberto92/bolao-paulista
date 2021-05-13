@@ -33,11 +33,11 @@ public class Guess {
 	public Guess() {
 	}
 
-	public Guess(Long id, Player player, Team awayTeam, Team homeTeam, int goalsHomeTeam, int goalsAwayTeam) {
+	public Guess(Long id, Player player, Team homeTeam, Team awayTeam, int goalsHomeTeam, int goalsAwayTeam) {
 		this.id = id;
 		this.player = player;
-		this.awayTeam = awayTeam;
 		this.homeTeam = homeTeam;
+		this.awayTeam = awayTeam;
 		this.goalsHomeTeam = goalsHomeTeam;
 		this.goalsAwayTeam = goalsAwayTeam;
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.bolao.bolaoPaulista.dto.MatchDTO;
+import br.com.bolao.bolaoPaulista.model.Guess;
 import br.com.bolao.bolaoPaulista.model.Match;
 import br.com.bolao.bolaoPaulista.model.Team;
 import br.com.bolao.bolaoPaulista.repository.MatchRepository;
@@ -23,7 +24,7 @@ public class MatchServiceImpl implements MatchService {
 
 	@Override
 	public List<Match> findAllMatches() {
-		return matchRepository.findAll();	
+		return matchRepository.findAll();
 	}
 
 	@Override
@@ -44,9 +45,8 @@ public class MatchServiceImpl implements MatchService {
 			Team homeTeam = teamRepository.findByName(nameHomeTeam);
 			Team awayTeam = teamRepository.findByName(nameAwayTeam);
 			if (homeTeam != null && awayTeam != null) {
-				match = new Match(matchDTO.getId(), homeTeam, awayTeam, 
-									  matchDTO.getGoalsHomeTeam(),
-									  matchDTO.getGoalsAwayTeam());
+				match = new Match(matchDTO.getId(), homeTeam, awayTeam, matchDTO.getGoalsHomeTeam(),
+						matchDTO.getGoalsAwayTeam());
 				matchRepository.save(match);
 				return match;
 			}
@@ -79,5 +79,14 @@ public class MatchServiceImpl implements MatchService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Match findByTeams(Guess guess) {
+		Match match = matchRepository.findByTeams(guess.getHomeTeam(), guess.getAwayTeam());
+		if (match.getAwayTeam() == guess.getAwayTeam() && match.getHomeTeam() == guess.getHomeTeam()) {
+			return match;
+		}
+		return null;
 	}
 }

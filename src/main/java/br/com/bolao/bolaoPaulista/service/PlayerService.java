@@ -10,7 +10,7 @@ public interface PlayerService {
 
 	Player findPlayerById(Long id);
 
-	Player createPlayer(String nomeTime, String playerName);
+	Player createPlayer(String nomeTime, String playerName, int score);
 
 	Player updatePlayer(Long id, PlayerDTO playerDTO);
 

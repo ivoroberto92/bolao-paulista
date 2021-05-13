@@ -3,6 +3,7 @@ package br.com.bolao.bolaoPaulista.service;
 import java.util.List;
 
 import br.com.bolao.bolaoPaulista.dto.MatchDTO;
+import br.com.bolao.bolaoPaulista.model.Guess;
 import br.com.bolao.bolaoPaulista.model.Match;
 
 public interface MatchService {
@@ -16,4 +17,6 @@ public interface MatchService {
 	Match updateMatch(Long id, MatchDTO matchDTO);
 
 	boolean removeMatchById(Long id);
+
+	Match findByTeams(Guess guess);
 }

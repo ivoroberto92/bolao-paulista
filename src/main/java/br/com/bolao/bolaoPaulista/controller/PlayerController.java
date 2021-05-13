@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,8 @@ import br.com.bolao.bolaoPaulista.model.Player;
 import br.com.bolao.bolaoPaulista.service.PlayerService;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/players")
+@CrossOrigin(origins = "*")
 public class PlayerController {
 
 	@Autowired
@@ -45,8 +47,8 @@ public class PlayerController {
 
 	@PostMapping
 	public ResponseEntity<PlayerDTO> create(@RequestBody PlayerDTO playerDTO, UriComponentsBuilder uriBuilder) {
-		Player player = playerService.createPlayer(playerDTO.getTeamName(), playerDTO.getName());
-		URI uri = uriBuilder.path("/player/{id}").buildAndExpand(player.getId()).toUri();
+		Player player = playerService.createPlayer(playerDTO.getTeamName(), playerDTO.getName(), playerDTO.getScore());
+		URI uri = uriBuilder.path("/players/{id}").buildAndExpand(player.getId()).toUri();
 		System.out.println(uri);
 		return ResponseEntity.created(uri).body(new PlayerDTO(player));
 	}

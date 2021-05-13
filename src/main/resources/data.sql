@@ -23,6 +23,6 @@ INSERT INTO Player(name, Team_id, score) VALUES('Lucas', 2, 0);
 INSERT INTO Player(name, Team_id, score) VALUES('Kenny', 2, 0);
 INSERT INTO Player(name, Team_id, score) VALUES('Geyvson', 3, 0);
 
-INSERT INTO Match(away_team_id, home_team_id, goals_home_team, goals_away_team) VALUES(1, 2, 2, 1)
+INSERT INTO Match(away_team_id, home_team_id, goals_home_team, goals_away_team) VALUES(1, 2, 0, 3)
 
 
