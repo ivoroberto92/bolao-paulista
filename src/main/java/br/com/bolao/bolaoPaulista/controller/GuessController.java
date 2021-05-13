@@ -20,7 +20,7 @@ import br.com.bolao.bolaoPaulista.model.Guess;
 import br.com.bolao.bolaoPaulista.service.GuessService;
 
 @RestController
-@RequestMapping("/guess")
+@RequestMapping("/guesses")
 public class GuessController {
 
 	@Autowired
@@ -45,7 +45,7 @@ public class GuessController {
 	private ResponseEntity<?> create(@RequestBody GuessDTO guessDTO, UriComponentsBuilder uriBuilder) {
 		Guess guess = guessService.createGuess(guessDTO);		
 		if (guess != null) {
-			URI uri = uriBuilder.path("/guess/{id}").buildAndExpand(guess.getId()).toUri();
+			URI uri = uriBuilder.path("/guesses/{id}").buildAndExpand(guess.getId()).toUri();
 			return ResponseEntity.created(uri).body(new GuessDTO(guess));
 		}
 		ErrorSintaxe error = new ErrorSintaxe("Não foi possível realizar o cadastro devido erro nas informações");

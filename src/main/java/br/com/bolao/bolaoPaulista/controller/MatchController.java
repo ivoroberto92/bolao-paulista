@@ -22,7 +22,7 @@ import br.com.bolao.bolaoPaulista.model.Match;
 import br.com.bolao.bolaoPaulista.service.MatchService;
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/matches")
 public class MatchController {
 
 	@Autowired
@@ -48,7 +48,7 @@ public class MatchController {
 	private ResponseEntity<MatchDTO> create(@RequestBody MatchDTO matchDTO, UriComponentsBuilder uriBuilder) {
 		Match match = matchService.createMatch(matchDTO, matchDTO.getHomeTeam(), matchDTO.getAwayTeam());
 		if (match != null) {
-			URI uri = uriBuilder.path("/match/{id}").buildAndExpand(match.getId()).toUri();
+			URI uri = uriBuilder.path("/matches/{id}").buildAndExpand(match.getId()).toUri();
 			return ResponseEntity.created(uri).body(new MatchDTO(match));
 		}
 		return ResponseEntity.notFound().build();
