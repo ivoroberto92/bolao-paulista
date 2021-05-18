@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.bolao.bolaoPaulista.model.Player;
+import br.com.bolao.bolaoPaulista.model.Status;
 
 public class PlayerDTO {
 
@@ -12,7 +13,8 @@ public class PlayerDTO {
 	private String teamName;
 	private Long teamId;
 	private int score;
-
+	private Status status;
+	
 	public PlayerDTO() {
 	}
 
@@ -22,6 +24,7 @@ public class PlayerDTO {
 		this.teamName = player.getTeam().getName();
 		this.teamId = player.getTeam().getId();
 		this.score = player.getScore();
+		this.status = player.getStatus();
 	}
 
 	public Long getId() {
@@ -67,5 +70,12 @@ public class PlayerDTO {
 	public static List<PlayerDTO> converterParaDTO(List<Player> players) {
 		return players.stream().map(PlayerDTO::new).collect(Collectors.toList());
 	}
+	
+	public Status getStatus() {
+		return status;
+	}
 
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 }

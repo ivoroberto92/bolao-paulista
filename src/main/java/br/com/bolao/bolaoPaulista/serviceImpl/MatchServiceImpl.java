@@ -39,11 +39,11 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	@Override
-	public Match createMatch(MatchDTO matchDTO, String nameHomeTeam, String nameAwayTeam) {
+	public Match createMatch(MatchDTO matchDTO) {
 		Match match = null;
-		if (!nameHomeTeam.equals(nameAwayTeam)) {
-			Team homeTeam = teamRepository.findByName(nameHomeTeam);
-			Team awayTeam = teamRepository.findByName(nameAwayTeam);
+		if (!matchDTO.getHomeTeam().equals(matchDTO.getAwayTeam())) {
+			Team homeTeam = teamRepository.findByName(matchDTO.getHomeTeam());
+			Team awayTeam = teamRepository.findByName(matchDTO.getAwayTeam());
 			if (homeTeam != null && awayTeam != null) {
 				match = new Match(matchDTO.getId(), homeTeam, awayTeam, matchDTO.getGoalsHomeTeam(),
 						matchDTO.getGoalsAwayTeam());

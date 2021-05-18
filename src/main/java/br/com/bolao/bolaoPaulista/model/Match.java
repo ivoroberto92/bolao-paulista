@@ -14,11 +14,12 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "awayTeam_id")
-	private Team awayTeam;
-	@ManyToOne
 	@JoinColumn(name = "homeTeam_id")
 	private Team homeTeam;
+	
+	@ManyToOne
+	@JoinColumn(name = "awayTeam_id")
+	private Team awayTeam;
 	
 	private int goalsHomeTeam;
 	
@@ -27,10 +28,10 @@ public class Match {
 	public Match() {
 	}
 	
-	public Match(Long id, Team awayTeam, Team homeTeam, int goalsHomeTeam, int goalsAwayTeam) {
+	public Match(Long id, Team homeTeam, Team awayTeam, int goalsHomeTeam, int goalsAwayTeam) {
 		this.id = id;
-		this.awayTeam = awayTeam;
 		this.homeTeam = homeTeam;
+		this.awayTeam = awayTeam;
 		this.goalsHomeTeam = goalsHomeTeam;
 		this.goalsAwayTeam = goalsAwayTeam;
 	}

@@ -1,6 +1,8 @@
 package br.com.bolao.bolaoPaulista.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,13 +24,17 @@ public class Player {
 
 	private int score;
 	
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	
 	public Player() {
 	}
 
-	public Player(String name, Team team, int score) {
+	public Player(String name, Team team, int score, Status status) {
 		this.name = name;
 		this.team = team;
 		this.score = score;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -61,5 +67,13 @@ public class Player {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }

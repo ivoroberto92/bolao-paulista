@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.bolao.bolaoPaulista.dto.PlayerDTO;
@@ -21,12 +22,13 @@ public class PlayerServiceImpl implements PlayerService {
 	@Autowired
 	private TeamRepository teamRepository;
 
+
 	@Override
-	public Player createPlayer(String nomeTeam, String playerName, int score) {
+	public Player createPlayer(PlayerDTO playerDTO) {
 		Player player = null;
-		Team team = teamRepository.findByName(nomeTeam);
+		Team team = teamRepository.findByName(playerDTO.getTeamName());
 		if (team != null) {
-			player = new Player(playerName, team, score);
+			player = new Player(playerDTO.getName(), team, playerDTO.getScore(), playerDTO.getStatus());
 			playerRepository.save(player);
 			return player;
 		}

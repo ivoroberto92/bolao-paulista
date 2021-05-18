@@ -47,7 +47,7 @@ public class PlayerController {
 
 	@PostMapping
 	public ResponseEntity<PlayerDTO> create(@RequestBody PlayerDTO playerDTO, UriComponentsBuilder uriBuilder) {
-		Player player = playerService.createPlayer(playerDTO.getTeamName(), playerDTO.getName(), playerDTO.getScore());
+		Player player = playerService.createPlayer(playerDTO);
 		URI uri = uriBuilder.path("/players/{id}").buildAndExpand(player.getId()).toUri();
 		System.out.println(uri);
 		return ResponseEntity.created(uri).body(new PlayerDTO(player));

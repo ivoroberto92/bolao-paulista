@@ -8,13 +8,9 @@ import br.com.bolao.bolaoPaulista.model.Match;
 public class MatchDTO {
 
 	private Long id;
-
-	private String awayTeam;
-
 	private String homeTeam;
-
+	private String awayTeam;
 	private int goalsHomeTeam;
-
 	private int goalsAwayTeam;
 
 	public MatchDTO() {

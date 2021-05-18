@@ -12,7 +12,7 @@ public interface MatchService {
 
 	Match findMatchById(Long id);
 
-	Match createMatch(MatchDTO matchDTO, String nameHomeTeam, String nameAwayTeam);
+	Match createMatch(MatchDTO matchDTO);
 
 	Match updateMatch(Long id, MatchDTO matchDTO);
 

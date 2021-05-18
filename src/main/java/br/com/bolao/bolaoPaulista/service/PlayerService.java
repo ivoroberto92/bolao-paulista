@@ -10,12 +10,11 @@ public interface PlayerService {
 
 	Player findPlayerById(Long id);
 
-	Player createPlayer(String nomeTime, String playerName, int score);
+	Player createPlayer(PlayerDTO playerDTO);
 
 	Player updatePlayer(Long id, PlayerDTO playerDTO);
 
 	List<Player> findAllPlayers();
 
 	boolean removePlayerById(Long id);
-
 }

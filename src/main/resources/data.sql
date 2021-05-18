@@ -15,14 +15,12 @@ INSERT INTO Team(name) VALUES('Mirassol');
 INSERT INTO Team(name) VALUES('Guarani');
 INSERT INTO Team(name) VALUES('São Caetano');
 
-INSERT INTO Player(name, Team_id, score) VALUES('Ivo', 1, 0);
-INSERT INTO Player(name, Team_id, score) VALUES('Renato', 1, 0);
-INSERT INTO Player(name, Team_id, score) VALUES('Nathan', 1, 0);
-INSERT INTO Player(name, Team_id, score) VALUES('Lukinhas', 1, 0);
-INSERT INTO Player(name, Team_id, score) VALUES('Lucas', 2, 0);
-INSERT INTO Player(name, Team_id, score) VALUES('Kenny', 2, 0);
-INSERT INTO Player(name, Team_id, score) VALUES('Geyvson', 3, 0);
-
-INSERT INTO Match(away_team_id, home_team_id, goals_home_team, goals_away_team) VALUES(1, 2, 0, 3)
-
-
+INSERT INTO Player(name, Team_id, score, status) VALUES('Ivo', 1, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Renato', 1, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Nathan', 1, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Lukinhas', 1, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Lucas', 2, 0, 'PENDENTE');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Kenny', 2, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Geyvson', 3, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Leandro', 3, 0, 'OK');
+INSERT INTO Player(name, Team_id, score, status) VALUES('Edu', 3, 0, 'OK');
