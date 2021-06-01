@@ -35,6 +35,12 @@ public class PlayerController {
 		List<Player> playeres = playerService.findAllPlayers();
 		return PlayerDTO.converterParaDTO(playeres);
 	}
+	
+	@GetMapping("/ranking")
+	public List<PlayerDTO> listAllByScore() {
+		List<Player> playeres = playerService.findAllPlayersByScore();
+		return PlayerDTO.converterParaDTO(playeres);
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PlayerDTO> findById(@PathVariable Long id) {

@@ -14,9 +14,11 @@ public class PlayerDTO {
 	private Long teamId;
 	private int score;
 	private Status status;
+	private int position;
+	private int guessRight;
+	private int guessError;
 	
-	public PlayerDTO() {
-	}
+
 
 	public PlayerDTO(Player player) {
 		this.id = player.getId();
@@ -25,6 +27,9 @@ public class PlayerDTO {
 		this.teamId = player.getTeam().getId();
 		this.score = player.getScore();
 		this.status = player.getStatus();
+		this.position = player.getPosition();
+		this.guessRight = player.getGuessRight();
+		this.guessError = player.getGuessError();
 	}
 
 	public Long getId() {
@@ -78,4 +83,32 @@ public class PlayerDTO {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	
+	public int getGuessRight() {
+		return guessRight;
+	}
+
+	public void setGuessRight(int guessRight) {
+		this.guessRight = guessRight;
+	}
+	
+	public int getGuessError() {
+		return guessError;
+	}
+
+	public void setGuessError(int guessError) {
+		this.guessError = guessError;
+	}
+
+	public PlayerDTO() {
+	}
+
 }

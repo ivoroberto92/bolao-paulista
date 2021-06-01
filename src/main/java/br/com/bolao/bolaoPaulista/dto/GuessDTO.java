@@ -1,5 +1,6 @@
 package br.com.bolao.bolaoPaulista.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,22 +9,13 @@ import br.com.bolao.bolaoPaulista.model.Guess;
 public class GuessDTO {
 
 	private Long id;
-
-	//private Long idPlayer;
-
 	private String playerName;
-
 	private String awayTeam;
-
 	private String homeTeam;
-
 	private int goalsHomeTeam;
-
 	private int goalsAwayTeam;
-
-	public GuessDTO() {
-	}
-
+	private LocalDate date;
+	
 	public GuessDTO(Guess guess) {
 		this.id = guess.getId();
 		//this.idPlayer = guess.getPlayer().getId();
@@ -32,6 +24,7 @@ public class GuessDTO {
 		this.homeTeam = guess.getHomeTeam().getName();
 		this.goalsHomeTeam = guess.getGoalsHomeTeam();
 		this.goalsAwayTeam = guess.getGoalsAwayTeam();
+		this.date = guess.getDate();
 	}
 
 	public Long getId() {
@@ -89,9 +82,19 @@ public class GuessDTO {
 	public void setGoalsAwayTeam(int goalsAwayTeam) {
 		this.goalsAwayTeam = goalsAwayTeam;
 	}
+	
+	public LocalDate getDate() {
+		return date;
+	}
 
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public GuessDTO() {
+	}
+	
 	public static List<GuessDTO> converterGuess(List<Guess> guesss) {
 		return guesss.stream().map(GuessDTO::new).collect(Collectors.toList());
 	}
-
 }

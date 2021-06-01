@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.MatchDTO;
 import br.com.bolao.bolaoPaulista.model.Match;
+import br.com.bolao.bolaoPaulista.model.Team;
 import br.com.bolao.bolaoPaulista.service.MatchService;
 
 @RestController
@@ -32,11 +33,10 @@ public class MatchController {
 
 	@GetMapping
 	private List<MatchDTO> listAll() {
-		List<Match> matchs = matchService.findAllMatches();
-		return MatchDTO.converterParaDTO(matchs);
-
+		List<Match> matches = matchService.findAllMatches();
+		return MatchDTO.converterParaDTO(matches);
 	}
-
+	
 	@GetMapping("/{id}")
 	private ResponseEntity<MatchDTO> findMatchById(@PathVariable Long id, MatchDTO matchDTO) {
 		Match match = matchService.findMatchById(id);

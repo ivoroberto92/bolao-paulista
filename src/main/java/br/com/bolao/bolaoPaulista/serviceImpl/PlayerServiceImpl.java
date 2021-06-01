@@ -52,6 +52,23 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 	
 	@Override
+	public List<Player> findAllPlayersByScore() {
+		List<Player> players = playerRepository.findAllByScore();
+		players = assignPosition(players);
+		return players;
+	}
+	
+	private List<Player> assignPosition(List<Player> players) {
+		int count = 1;
+		for (Player player : players) {
+			player.setPosition(count);
+			count++;
+			playerRepository.save(player);
+		}
+		return players;
+	}
+
+	@Override
 	public Player updatePlayer(Long id, PlayerDTO playerDTO) {
 		Player player = findPlayerById(id);
 		Team team = teamRepository.getOne(playerDTO.getId());
@@ -72,5 +89,7 @@ public class PlayerServiceImpl implements PlayerService {
 		}
 		return false;
 	}
+
+	
 
 }

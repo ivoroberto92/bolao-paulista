@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.bolao.bolaoPaulista.model.Match;
+import br.com.bolao.bolaoPaulista.model.Team;
 
 public class MatchDTO {
 
@@ -12,16 +13,26 @@ public class MatchDTO {
 	private String awayTeam;
 	private int goalsHomeTeam;
 	private int goalsAwayTeam;
+	private List<Team> teams;
 
 	public MatchDTO() {
 	}
-
+	
 	public MatchDTO(Match match) {
 		this.id = match.getId();
 		this.awayTeam = match.getAwayTeam().getName();
 		this.homeTeam = match.getHomeTeam().getName();
 		this.goalsHomeTeam = match.getGoalsHomeTeam();
 		this.goalsAwayTeam = match.getGoalsAwayTeam();
+	}
+	
+	public MatchDTO(Match match, List<Team> teams) {
+		this.id = match.getId();
+		this.awayTeam = match.getAwayTeam().getName();
+		this.homeTeam = match.getHomeTeam().getName();
+		this.goalsHomeTeam = match.getGoalsHomeTeam();
+		this.goalsAwayTeam = match.getGoalsAwayTeam();
+		this.teams = teams;
 	}
 
 	public Long getId() {

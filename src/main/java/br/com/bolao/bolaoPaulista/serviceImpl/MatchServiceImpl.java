@@ -89,4 +89,9 @@ public class MatchServiceImpl implements MatchService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<Team> findAllTeams() {
+		return teamRepository.findAll();
+	}
 }

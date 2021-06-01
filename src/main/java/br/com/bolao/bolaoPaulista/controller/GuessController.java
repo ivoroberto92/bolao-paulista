@@ -1,7 +1,9 @@
 package br.com.bolao.bolaoPaulista.controller;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.bolao.bolaoPaulista.dto.GuessDTO;
+import br.com.bolao.bolaoPaulista.dto.GuessesByDateDTO;
 import br.com.bolao.bolaoPaulista.model.Guess;
 import br.com.bolao.bolaoPaulista.service.GuessService;
 
@@ -30,10 +33,16 @@ public class GuessController {
 
 	@GetMapping
 	private List<GuessDTO> listAll() {
-		List<Guess> guesss = guessService.findAllGuess();
-		return GuessDTO.converterGuess(guesss);
+		List<Guess> guesses = guessService.findAllGuess();
+		return GuessDTO.converterGuess(guesses);
 	}
-
+	
+	@GetMapping("/groupByDate")
+	private List<GuessesByDateDTO> findAllGuessByDate() {
+		 Map<LocalDate, List<Guess>> guessesByDate = guessService.findAllGuessByDate();
+			return	GuessesByDateDTO.convertGuess(guessesByDate);
+	}
+	
 	@GetMapping("/{id}")
 	private ResponseEntity<GuessDTO> findById(@PathVariable Long id) {
 		Guess guess = guessService.findGuessById(id);

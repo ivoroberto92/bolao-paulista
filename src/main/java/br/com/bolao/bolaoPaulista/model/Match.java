@@ -1,30 +1,34 @@
 package br.com.bolao.bolaoPaulista.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity	
+@Table(name = "soccerMatch")
 public class Match {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "homeTeam_id")
+	@JoinColumn(name = "homeTeamId")
 	private Team homeTeam;
 	
 	@ManyToOne
-	@JoinColumn(name = "awayTeam_id")
+	@JoinColumn(name = "awayTeamId")
 	private Team awayTeam;
 	
 	private int goalsHomeTeam;
 	
 	private int goalsAwayTeam;
-	
+
 	public Match() {
 	}
 	

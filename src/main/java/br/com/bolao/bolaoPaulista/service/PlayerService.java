@@ -17,4 +17,6 @@ public interface PlayerService {
 	List<Player> findAllPlayers();
 
 	boolean removePlayerById(Long id);
+
+	List<Player> findAllPlayersByScore();
 }

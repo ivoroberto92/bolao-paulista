@@ -1,5 +1,8 @@
 package br.com.bolao.bolaoPaulista.model;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,24 +18,23 @@ public class Guess {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "player_id")
+	@JoinColumn(name = "playerId")
 	private Player player;
 
 	@ManyToOne
-	@JoinColumn(name = "awayTeam_id")
+	@JoinColumn(name = "awayTeamId")
 	private Team awayTeam;
 
 	@ManyToOne
-	@JoinColumn(name = "homeTeam_id")
+	@JoinColumn(name = "homeTeamId")
 	private Team homeTeam;
 
 	private int goalsHomeTeam;
 
 	private int goalsAwayTeam;
-
-	public Guess() {
-	}
-
+	
+	private LocalDate date;
+	
 	public Guess(Long id, Player player, Team homeTeam, Team awayTeam, int goalsHomeTeam, int goalsAwayTeam) {
 		this.id = id;
 		this.player = player;
@@ -89,5 +91,15 @@ public class Guess {
 	public void setGoalsAwayTeam(int goalsAwayTeam) {
 		this.goalsAwayTeam = goalsAwayTeam;
 	}
+	
+	public LocalDate getDate() {
+		return date;
+	}
 
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public Guess() {
+	}
 }

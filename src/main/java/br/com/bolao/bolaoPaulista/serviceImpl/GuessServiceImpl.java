@@ -1,9 +1,13 @@
 package br.com.bolao.bolaoPaulista.serviceImpl;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.bolao.bolaoPaulista.dto.GuessDTO;
@@ -31,7 +35,7 @@ public class GuessServiceImpl implements GuessService {
 
 	@Override
 	public List<Guess> findAllGuess() {
-		return guessRepository.findAll();
+		return guessRepository.findAll(Sort.by(Sort.Direction.ASC, "date"));
 	}
 
 	@Override
@@ -63,6 +67,7 @@ public class GuessServiceImpl implements GuessService {
 			guess = new Guess(guessDTO.getId(), player, homeTeam, awayTeam, guessDTO.getGoalsHomeTeam(),
 					guessDTO.getGoalsAwayTeam());
 			addPonctuation(guess, player);
+			guess.setDate(LocalDate.now());
 			return guess;
 		}
 		return guess;
@@ -103,9 +108,10 @@ public class GuessServiceImpl implements GuessService {
 		if (matchGoalsHome == guessGoalsHome && matchGoalsAway == guessGoalsAway) {
 			System.out.println("Parabéns, você acertou o placar, você ganhou " + hitScore + " pontos");
 			player.setScore(player.getScore() + hitScore);
-
-		} // Não acertou o palpite, porém acertou a quantidade de gols do time da casa ou
-			// visitante
+			player.setGuessRight(player.getGuessRight() + 1);
+		}
+		// Não acertou o palpite, porém acertou a quantidade de gols do time da casa ou
+		// visitante
 
 		else if ((matchGoalsHome == guessGoalsHome && matchGoalsAway != guessGoalsAway)
 				|| (matchGoalsHome != guessGoalsHome && matchGoalsAway == guessGoalsAway)) {
@@ -152,56 +158,59 @@ public class GuessServiceImpl implements GuessService {
 		} else if (matchGoalsHome != guessGoalsHome && matchGoalsAway != guessGoalsAway)
 
 		{
-			// melhorar daqui para baixo, quando o vencedor é o time visitante não está
-			// funcionando
-			if (winnerTeam.getName().equals(guess.getHomeTeam().getName())) {
-				// mostra("Time da casa venceu");
+			if (winnerTeam != null && winnerTeam.getName().equals(guess.getHomeTeam().getName())) {
+				// Time da casa venceu
 				if (guessGoalsHome > guessGoalsAway) {
 					System.out.println(
 							"Você acertou quem venceu,  porém não acertou a quantidade de gols de nenhum dos times, você ganhou "
 									+ hitWinner + " pontos");
 					player.setScore(player.getScore() + hitWinner);
 				} else if (guessGoalsHome < guessGoalsAway) {
+					player.setGuessError(player.getGuessError() + 1);
 					System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
 				} else {
 					System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
+					player.setGuessError(player.getGuessError() + 1);
 				}
-			} else if (winnerTeam.getName().equals(guess.getAwayTeam().getName())) {
-				// mostra("Time visitante venceu");
+			} else if (winnerTeam != null && winnerTeam.getName().equals(guess.getAwayTeam().getName())) {
+				// Time visitante venceu
 				if (guessGoalsHome < guessGoalsAway) {
 					System.out.println(
 							"Você acertou quem venceu,  porém não acertou a quantidade de gols de nenhum dos times, você ganhou "
 									+ hitWinner + " pontos");
 					player.setScore(player.getScore() + hitWinner);
 				} else if (guessGoalsHome > guessGoalsAway) {
+					player.setGuessError(player.getGuessError() + 1);
 					System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
 				} else {
+					player.setGuessError(player.getGuessError() + 1);
 					System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
 				}
-			}
-
-		} else if (draw) {
-			// errou que era empate, mas acertou a quantidade de gols de um dos times
-			if ((guessGoalsHome != guessGoalsAway)
-					&& (matchGoalsHome == guessGoalsHome || matchGoalsAway == guessGoalsAway)) {
-				System.out.println(
-						"Você não acertou que a partida terminou empatada, mas acertou a quantidade de gols de um dos times, você ganhou "
-								+ hitGoalsTeam + " ponto");
-				player.setScore(player.getScore() + hitGoalsTeam);
-			}
-			// errou tudo
-			else if (guessGoalsHome != guessGoalsAway) {
+			} else if (draw) {
+				// errou que era empate, mas acertou a quantidade de gols de um dos times
+				if ((guessGoalsHome != guessGoalsAway)
+						&& (matchGoalsHome == guessGoalsHome || matchGoalsAway == guessGoalsAway)) {
+					System.out.println(
+							"Você não acertou que a partida terminou empatada, mas acertou a quantidade de gols de um dos times, você ganhou "
+									+ hitGoalsTeam + " ponto");
+					player.setScore(player.getScore() + hitGoalsTeam);
+				}
+				// errou tudo
+				else if (guessGoalsHome != guessGoalsAway) {
+					player.setGuessError(player.getGuessError() + 1);
+					System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
+				}
+				// acertou que era empate, mas errou a quantidade de gols dos dois times
+				else {
+					System.out.println(
+							"Você acertou que essa partida terminaria empatada, porém não acertou a quantidade de gols de nenhum dos times, você ganhou "
+									+ hitWinner + " pontos");
+					player.setScore(player.getScore() + hitWinner);
+				}
+			} else {
+				player.setGuessError(player.getGuessError() + 1);
 				System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
 			}
-			// acertou que era empate, mas errou a quantidade de gols dos dois times
-			else {
-				System.out.println(
-						"Você acertou que essa partida terminaria empatada, porém não acertou a quantidade de gols de nenhum dos times, você ganhou "
-								+ hitWinner + " pontos");
-				player.setScore(player.getScore() + hitWinner);
-			}
-		} else {
-			System.out.println("Você foi perna de pau, não ganhou nenhum ponto nessa partida");
 		}
 		playerRepository.save(player);
 	}
@@ -235,6 +244,14 @@ public class GuessServiceImpl implements GuessService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Map<LocalDate, List<Guess>> findAllGuessByDate() {
+		List<Guess> guesses = guessRepository.findAll();
+		Map<LocalDate, List<Guess>> guessesGroupByDate = guesses.stream()
+				  .collect(Collectors.groupingBy(Guess::getDate));
+		return guessesGroupByDate;
 	}
 
 }

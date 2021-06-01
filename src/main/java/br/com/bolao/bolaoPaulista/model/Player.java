@@ -1,5 +1,6 @@
 package br.com.bolao.bolaoPaulista.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,17 +17,25 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "name")
 	private String name;
 
 	@ManyToOne
-	@JoinColumn(name = "team_id")
+	@JoinColumn(name = "teamId")
 	private Team team;
 
 	private int score;
-	
+
+	private int position;
+
 	@Enumerated(EnumType.STRING)
+	@Column(name = "payment_status")
 	private Status status;
-	
+
+	private int guessRight;
+
+	private int guessError;
+
 	public Player() {
 	}
 
@@ -60,7 +69,7 @@ public class Player {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
-	
+
 	public int getScore() {
 		return score;
 	}
@@ -68,7 +77,7 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
+
 	public Status getStatus() {
 		return status;
 	}
@@ -76,4 +85,29 @@ public class Player {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public int getGuessRight() {
+		return guessRight;
+	}
+
+	public void setGuessRight(int guessRight) {
+		this.guessRight = guessRight;
+	}
+
+	public int getGuessError() {
+		return guessError;
+	}
+
+	public void setGuessError(int guessError) {
+		this.guessError = guessError;
+	}
+
 }
