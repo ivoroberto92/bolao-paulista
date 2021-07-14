@@ -19,5 +19,7 @@ public interface GuessService{
 
 	boolean removeGuessById(Long id);
 	
-	Map<LocalDate, List<Guess>> findAllGuessByDate();
+	//Map<LocalDate, List<Guess>> findAllGuessByDate();
+
+	List<Guess> findAllGuessesByPlayerId(Long id);
 }

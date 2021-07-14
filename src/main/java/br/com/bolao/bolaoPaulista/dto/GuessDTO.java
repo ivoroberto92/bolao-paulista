@@ -15,16 +15,21 @@ public class GuessDTO {
 	private int goalsHomeTeam;
 	private int goalsAwayTeam;
 	private LocalDate date;
-	
+	private int score;
+
 	public GuessDTO(Guess guess) {
 		this.id = guess.getId();
-		//this.idPlayer = guess.getPlayer().getId();
+		// this.idPlayer = guess.getPlayer().getId();
 		this.playerName = guess.getPlayer().getName();
 		this.awayTeam = guess.getAwayTeam().getName();
 		this.homeTeam = guess.getHomeTeam().getName();
 		this.goalsHomeTeam = guess.getGoalsHomeTeam();
 		this.goalsAwayTeam = guess.getGoalsAwayTeam();
 		this.date = guess.getDate();
+		this.score = guess.getPlayer().getScore();
+	}
+
+	public GuessDTO() {
 	}
 
 	public Long getId() {
@@ -82,7 +87,7 @@ public class GuessDTO {
 	public void setGoalsAwayTeam(int goalsAwayTeam) {
 		this.goalsAwayTeam = goalsAwayTeam;
 	}
-	
+
 	public LocalDate getDate() {
 		return date;
 	}
@@ -90,10 +95,15 @@ public class GuessDTO {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
-	public GuessDTO() {
-	}
 	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	public static List<GuessDTO> converterGuess(List<Guess> guesss) {
 		return guesss.stream().map(GuessDTO::new).collect(Collectors.toList());
 	}

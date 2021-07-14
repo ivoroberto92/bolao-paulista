@@ -35,7 +35,7 @@ public class GuessServiceImpl implements GuessService {
 
 	@Override
 	public List<Guess> findAllGuess() {
-		return guessRepository.findAll(Sort.by(Sort.Direction.ASC, "date"));
+		return guessRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
 	}
 
 	@Override
@@ -246,12 +246,18 @@ public class GuessServiceImpl implements GuessService {
 		return false;
 	}
 
+//	@Override
+//	public Map<LocalDate, List<Guess>> findAllGuessByDate() {
+//		List<Guess> guesses = guessRepository.findAll();
+//		Map<LocalDate, List<Guess>> guessesGroupByDate = guesses.stream()
+//				  .collect(Collectors.groupingBy(Guess::getDate));
+//		return guessesGroupByDate;
+//	}
+
 	@Override
-	public Map<LocalDate, List<Guess>> findAllGuessByDate() {
-		List<Guess> guesses = guessRepository.findAll();
-		Map<LocalDate, List<Guess>> guessesGroupByDate = guesses.stream()
-				  .collect(Collectors.groupingBy(Guess::getDate));
-		return guessesGroupByDate;
+	public List<Guess> findAllGuessesByPlayerId(Long id) {
+		List<Guess> guessesByPlayerId = guessRepository.findAllGuessesByPlayerId(id);
+		return guessesByPlayerId;
 	}
 
 }

@@ -37,11 +37,17 @@ public class GuessController {
 		return GuessDTO.converterGuess(guesses);
 	}
 	
-	@GetMapping("/groupByDate")
-	private List<GuessesByDateDTO> findAllGuessByDate() {
-		 Map<LocalDate, List<Guess>> guessesByDate = guessService.findAllGuessByDate();
-			return	GuessesByDateDTO.convertGuess(guessesByDate);
+	@GetMapping("/player/{id}")
+	private List<GuessDTO> getGuessesbyPlayerId(@PathVariable Long id) {
+		List<Guess> guesses = guessService.findAllGuessesByPlayerId(id);
+		return GuessDTO.converterGuess(guesses);
 	}
+	
+//	@GetMapping("/groupByDate")
+//	private List<GuessesByDateDTO> findAllGuessByDate() {
+//		 Map<LocalDate, List<Guess>> guessesByDate = guessService.findAllGuessByDate();
+//			return	GuessesByDateDTO.convertGuess(guessesByDate);
+//	}
 	
 	@GetMapping("/{id}")
 	private ResponseEntity<GuessDTO> findById(@PathVariable Long id) {
